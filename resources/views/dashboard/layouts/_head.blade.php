@@ -30,6 +30,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_files/app-assets/css/pages/dashboard-ecommerce.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_files/app-assets/css/plugins/charts/chart-apex.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_files/app-assets/css/plugins/extensions/ext-component-toastr.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('dashboard_files/app-assets/vendors/css/forms/select/select2.min.css') }}">
+
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->

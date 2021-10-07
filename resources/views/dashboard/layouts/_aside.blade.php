@@ -17,12 +17,20 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class=" nav-item active">
-                <a class="d-flex align-items-center" href="{{ route('dashboard') }}">
+            <li class=" nav-item {{ Route::is('home')?'active':'' }}">
+                <a class="d-flex align-items-center" href="{{ route('home') }}">
                     <i data-feather="home"></i>
-                    <span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span>
+                    <span class="menu-title text-truncate" data-i18n="Dashboards">Home</span>
                 </a>
             </li>
+
+            <li class=" nav-item  {{ Route::is('users.*')?'active':'' }}">
+                <a class="d-flex align-items-center" href="{{ route('users.index') }}">
+                    <i data-feather="users"></i>
+                    <span class="menu-title text-truncate" data-i18n="Users">Users</span>
+                </a>
+            </li>
+
         </ul>
     </div>
 </div>

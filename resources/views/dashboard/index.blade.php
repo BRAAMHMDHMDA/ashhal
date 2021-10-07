@@ -1,14 +1,15 @@
 @extends('dashboard.layouts.app')
 
+@section('content_title', 'Home')
+
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+    <li class="breadcrumb-item active"><i data-feather="home"></i></li>
+@endsection
+
 @section('content')
 
-    <div class="app-content content ">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper">
-            <div class="content-header row">
-            </div>
-            <div class="content-body">
+    <div class="content-body">
                 <!-- Dashboard Ecommerce Starts -->
                 <section id="dashboard-ecommerce">
                     <div class="row match-height">
@@ -737,7 +738,5 @@
                 <!-- Dashboard Ecommerce ends -->
 
             </div>
-        </div>
-    </div>
 
 @endsection
