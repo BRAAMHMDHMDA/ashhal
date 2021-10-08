@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\{
     UserController,
+    RoleController,
 
 };
 /*
@@ -28,5 +29,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('users',UserController::class);
 
+    Route::resource('roles',RoleController::class);
 
 });

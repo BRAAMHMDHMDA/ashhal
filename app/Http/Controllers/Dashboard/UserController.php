@@ -6,12 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-
+    function __construct()
+    {
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:user-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
 //        $users = User::whereHas('roles', function ($query) {
@@ -46,6 +53,8 @@ class UserController extends Controller
             $image = $image->store('/users', 'media');
             $data['image'] = $image;
         }
+        $data['password'] = Hash::make($request->password);
+
         DB::beginTransaction();
         try {
             $user = User::create($data);
@@ -83,7 +92,7 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $request->validate(User::validateRules($request->id));
+        $request->validate(User::validateRules($user->id));
         $data = $request->all();
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -95,6 +104,7 @@ class UserController extends Controller
             }
             $data['image'] = $image;
         }
+        $data['password'] = Hash::make($request->password);
 
         DB::beginTransaction();
         try {

@@ -23,14 +23,22 @@
                     <span class="menu-title text-truncate" data-i18n="Dashboards">Home</span>
                 </a>
             </li>
-
-            <li class=" nav-item  {{ Route::is('users.*')?'active':'' }}">
-                <a class="d-flex align-items-center" href="{{ route('users.index') }}">
-                    <i data-feather="users"></i>
-                    <span class="menu-title text-truncate" data-i18n="Users">Users</span>
-                </a>
-            </li>
-
+            @can('user-list')
+                <li class=" nav-item  {{ Route::is('users.*')?'active':'' }}">
+                    <a class="d-flex align-items-center" href="{{ route('users.index') }}">
+                        <i data-feather="users"></i>
+                        <span class="menu-title text-truncate" data-i18n="Users">Users</span>
+                    </a>
+                </li>
+            @endcan
+            @can('role-list')
+                <li class=" nav-item  {{ Route::is('roles.*')?'active':'' }}">
+                    <a class="d-flex align-items-center" href="{{ route('roles.index') }}">
+                        <i data-feather="shield"></i>
+                        <span class="menu-title text-truncate" data-i18n="roles">Roles & permissions</span>
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>

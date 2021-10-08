@@ -8,9 +8,11 @@
 @endsection
 
 @section('breadcrumb-right')
-    <a href="{{ route('users.create') }}">
-        <button type="button" class="btn btn-primary"><i data-feather='plus'></i> Add New User</button>
-    </a>
+    @can('user-create')
+        <a href="{{ route('users.create') }}">
+            <button type="button" class="btn btn-primary"><i data-feather='plus'></i> Add New User</button>
+        </a>
+    @endcan
 @endsection
 
 @section('content')
@@ -60,17 +62,21 @@
                         </td>
                         <td>{{ $user->created_at->diffForHumans() }}</td>
                         <td>
-                            <a href="{{route('users.edit',$user->id)}}">
-                                <button type="button" class="btn btn-sm btn-info">
-                                    <i data-feather='edit'></i>
-                                </button>
-                            </a>
-                            <form action="{{ route('users.destroy', $user->id) }}" method="post"
-                                  style="display: inline-block">
-                                {{ csrf_field() }}
-                                {{ method_field('delete') }}
-                                <button type="button" class="delete btn btn-sm btn-danger"><i data-feather='trash-2'></i></button>
-                            </form><!-- end of form -->
+                            @can('user-edit')
+                                <a href="{{route('users.edit',$user->id)}}">
+                                    <button type="button" class="btn btn-sm btn-info">
+                                        <i data-feather='edit'></i>
+                                    </button>
+                                </a>
+                            @endcan
+                            @can('user-delete')
+                                <form action="{{ route('users.destroy', $user->id) }}" method="post"
+                                      style="display: inline-block">
+                                    {{ csrf_field() }}
+                                    {{ method_field('delete') }}
+                                    <button type="button" class="delete btn btn-sm btn-danger"><i data-feather='trash-2'></i></button>
+                                </form><!-- end of form -->
+                            @endcan
                         </td>
                     </tr>
                 @endforeach
