@@ -39,6 +39,15 @@
                     </a>
                 </li>
             @endcan
+
+            @can('chauffeur-list')
+                <li class=" nav-item  {{ Route::is('chauffeurs.*')?'active':'' }}">
+                    <a class="d-flex align-items-center" href="{{ route('chauffeurs.index') }}">
+                        <img src="https://img.icons8.com/external-itim2101-lineal-itim2101/25/000000/external-taxi-driver-male-occupation-avatar-itim2101-lineal-itim2101.png"/>
+                        <span class="menu-title text-truncate ml-1" data-i18n="chauffeurs">Chauffeurs</span>
+                    </a>
+                </li>
+            @endcan
         </ul>
     </div>
 </div>
